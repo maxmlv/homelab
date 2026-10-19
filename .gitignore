@@ -1,0 +1,16 @@
+talos/clusterconfig/
+
+talosconfig
+kubeconfig
+
+*.agekey
+age.key
+.env
+*.decrypted.*
+
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+mise.local.toml
