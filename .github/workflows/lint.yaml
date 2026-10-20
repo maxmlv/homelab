@@ -1,0 +1,29 @@
+---
+name: Lint
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install tools with Mise
+        uses: jdx/mise-action@v5.2.1
+
+      - name: Run pre-commit
+        env:
+          SKIP: gitleaks
+        run: pre-commit run --all-files
+
+      - name: Run gitleaks
+        run: gitleaks git --redact -v
