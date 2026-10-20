@@ -1,0 +1,33 @@
+---
+clusterName: homelab-test
+talosVersion: v1.14.4
+kubernetesVersion: v1.37.1
+endpoint: https://192.168.0.11:6443
+allowSchedulingOnControlPlanes: true
+
+cniConfig:
+  name: none
+
+patches:
+  - |-
+    apiVersion: v1alpha1
+    kind: KubeProxyConfig
+    enabled: false
+
+nodes:
+  - hostname: talos-test
+    ipAddress: 192.168.0.11
+    controlPlane: true
+    installDisk: /dev/sda
+    networkInterfaces:
+      - deviceSelector:
+          physical: true
+        dhcp: false
+        addresses:
+          - 192.168.0.11/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.0.1
+    nameservers:
+      - 1.1.1.1
+      - 9.9.9.9
