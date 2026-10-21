@@ -4,6 +4,7 @@ extends: default
 
 ignore:
   - '*.sops.yaml'
+  - 'kubernetes/clusters/*/flux-system/'
 
 rules:
   document-start:

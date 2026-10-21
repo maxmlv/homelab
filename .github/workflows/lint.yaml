@@ -26,4 +26,5 @@ jobs:
         run: pre-commit run --all-files
 
       - name: Run gitleaks
+        if: ${{ !cancelled() }}
         run: gitleaks git --redact -v
