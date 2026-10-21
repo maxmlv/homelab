@@ -5,6 +5,8 @@ metadata:
   name: infra-controllers
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: infra-controllers
   interval: 1h
   path: ./kubernetes/infrastructure/controllers
   prune: true
@@ -12,3 +14,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
