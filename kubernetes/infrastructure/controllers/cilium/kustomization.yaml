@@ -9,5 +9,8 @@ configMapGenerator:
     namespace: kube-system
     files:
       - values.yaml
+    options:
+      labels:
+        reconcile.fluxcd.io/watch: Enabled
 generatorOptions:
   disableNameSuffixHash: true
